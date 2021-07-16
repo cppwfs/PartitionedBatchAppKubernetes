@@ -1,0 +1,30 @@
+= Kubernetes Partitioned Job
+
+An example of the usage of the `DeployerPartitionHandler` and
+`DeployerStepExecutionHandler` to partition a Spring Batch job in Kubernetes.
+
+== Requirements:
+
+* Java 8 or Above
+
+== Build For Minikube:
+
+[source,shell,indent=2]
+----
+./mvnw clean install -DskipTests
+eval $(minikube docker-env)
+./mvnw spring-boot:build-image
+
+----
+
+== Spring Cloud Data Flow :
+
+From Spring Cloud Data Flow:
+
+* Register the task
+**  From the app registration page register a task with the following URI `docker:partitioned-batch-job:2.3.1-SNAPSHOT`
+
+* Launch the task with the correct service account (it contains the correct roles to allow a task to launch other pods)
+** Launch the task with the following setting:
+** `deployment-service-account-name` should be set to `scdf-sa`
+
