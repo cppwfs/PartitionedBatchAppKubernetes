@@ -17,6 +17,15 @@ eval $(minikube docker-env)
 
 ----
 
+== Asynchronous remote partition task launch
+Currently partitions are launched sequentially.   To launch them asynchronously set the following environment variables:
+
+* `spring.cloud.task.closecontextEnabled=true``
+* `io.spring.asynchronous=true`
+
+NOTE: We need to close the context since the use of ThreadPoolTaskExecutor leaves a thread active thus the app will not terminate.
+To close the application appropriately, we will need to set `spring.cloud.task.closecontextEnabled`` to true. 
+
 == Spring Cloud Data Flow :
 
 From Spring Cloud Data Flow:
@@ -27,4 +36,6 @@ From Spring Cloud Data Flow:
 * Launch the task with the correct service account (it contains the correct roles to allow a task to launch other pods)
 ** Launch the task with the following setting:
 ** `deployment-service-account-name` should be set to `scdf-sa`
+
+
 
