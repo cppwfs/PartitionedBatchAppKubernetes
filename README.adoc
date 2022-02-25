@@ -20,7 +20,7 @@ eval $(minikube docker-env)
 == Asynchronous remote partition task launch
 Currently partitions are launched sequentially.   To launch them asynchronously set the following environment variables:
 
-* `spring.cloud.task.closecontextEnabled=true``
+* `spring.cloud.task.closecontextEnabled=true`
 * `io.spring.asynchronous=true`
 
 NOTE: We need to close the context since the use of ThreadPoolTaskExecutor leaves a thread active thus the app will not terminate.
